@@ -4,9 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
 
   // TODO: Add routing of lazy loaded dashboard Module (with guards) here...
-
+  { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule'}, //TODO Add canLoad: [AuthGuard]
   // TODO: Add routing of eagerly loaded modules here...
-  { path: '', redirectTo: '/welcome', pathMatch: 'full' }
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  { path: '**', redirectTo: '/welcome', pathMatch: 'full' }
 ];
 
 @NgModule({
