@@ -12,14 +12,14 @@ import {SharedModule} from "../shared/shared.module";
 @NgModule({
   declarations: [
     // TODO: Add declarations here, if additional components are placed within the Auth module
-    LoginComponent, LogoutComponent, RegisterComponent
+    LoginComponent, RegisterComponent
   ],
   imports: [
     SharedModule
   ],
   exports: [
     // TODO: Add declarations here, if additional components are placed within the Auth module
-    LoginComponent, LogoutComponent, RegisterComponent
+    LoginComponent, RegisterComponent
   ],
   providers: [ ]
 })
