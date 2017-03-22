@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  private payStatus: Boolean;
+
   constructor() { }
 
   ngOnInit() {
+    this.payStatus = false;
   }
 
+  private pay(event: UIEvent): void {
+    this.payStatus = true;
+  }
+
+  private startOver(event: UIEvent): void {
+    this.payStatus = false;
+  }
 }
