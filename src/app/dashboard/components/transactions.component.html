@@ -1,3 +1,24 @@
-<p>
-  transactions works!
-</p>
+<!-- Page Content -->
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title">All Transactions</h1>
+    </div>
+    <div class="panel-body">
+      <h3>Filter</h3>
+      <form >
+        <div class="form-group">
+          <label for="year">Select a year</label>
+          <input id="year" type="number" name="year" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="month">Select a month</label>
+          <input id="month" type="number" name="month" class="form-control"/>
+        </div>
+      </form>
+      <wed-transactions-list></wed-transactions-list>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+

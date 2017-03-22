@@ -5,11 +5,12 @@ import {SharedModule} from "../shared/shared.module";
 import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {DashboardComponent} from './dashboard.component';
 import {HomeComponent, TransactionsComponent} from "./components";
+import { TransactionsListComponent } from './components/transactions-list.component';
 
 @NgModule({
   declarations: [
     // Declarations (Components / Directives) used from/within the Module
-    DashboardComponent, HomeComponent, TransactionsComponent
+    DashboardComponent, HomeComponent, TransactionsComponent, TransactionsListComponent
   ],
   imports: [
     // Other Modules to import (imports the exported Components/Directives from the other module)

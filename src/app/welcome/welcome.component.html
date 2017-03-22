@@ -1,2 +1,32 @@
-TODO: implement your components / html logic here...
-<router-outlet></router-outlet>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Bancinator</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/welcome/register">Register</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- Page Content -->
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title">Welcome to the Finance Portal.</h1>
+    </div>
+    <div class="panel-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+<!-- /.container -->
+
