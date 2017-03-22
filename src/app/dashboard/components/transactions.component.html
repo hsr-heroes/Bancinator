@@ -7,13 +7,17 @@
     <div class="panel-body">
       <h3>Filter</h3>
       <form >
-        <div class="form-group">
+        <div class="form-group col-sm-4">
           <label for="year">Select a year</label>
-          <input id="year" type="number" name="year" class="form-control" />
+          <select id="year" name="year" class="selectpicker form-control">
+            <option>2018</option>
+          </select>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-8">
           <label for="month">Select a month</label>
-          <input id="month" type="number" name="month" class="form-control"/>
+          <select id="month" name="month" class="selectpicker form-control">
+            <option>Januar</option>
+          </select>
         </div>
       </form>
       <wed-transactions-list></wed-transactions-list>
