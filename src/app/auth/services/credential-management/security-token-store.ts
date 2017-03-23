@@ -8,10 +8,7 @@ export class SecurityTokenStore {
   private token:SecurityToken;
 
   constructor() {
-    this.token = {
-      token: localStorage.getItem('token'),
-      owner: null
-    };
+    this.token = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   public get storedValue():SecurityToken {
@@ -21,9 +18,9 @@ export class SecurityTokenStore {
   public set storedValue(value:SecurityToken) {
     this.token = value;
     if (this.token) {
-      localStorage.setItem('token', this.token.token );
+      localStorage.setItem('currentUser', JSON.stringify(({ owner: this.token.owner, token: this.token.token})) );
     } else {
-      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
     }
   }
 }
