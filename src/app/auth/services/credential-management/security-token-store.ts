@@ -20,7 +20,11 @@ export class SecurityTokenStore {
 
   public set storedValue(value:SecurityToken) {
     this.token = value;
-    localStorage.setItem('token', this.token.token);
+    if (this.token) {
+      localStorage.setItem('token', this.token.token );
+    } else {
+      localStorage.removeItem('token');
+    }
   }
 }
 
