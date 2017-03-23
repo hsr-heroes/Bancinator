@@ -5,7 +5,7 @@ import {DashboardComponent, HomeComponent, TransactionsComponent } from "./compo
 
 const appRoutes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
     children: [
       { path: '', component: HomeComponent },

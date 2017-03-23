@@ -9,9 +9,11 @@ export class AuthGuard implements CanLoad {
   constructor(private autSvc: AuthService, private navigationSvc: NavigationService) {}
 
   canLoad(route: Route): boolean {
-    console.log("now:");
-    console.log(this.autSvc.authenticatedUser);
-    return this.autSvc.hasCredentials;
+    if (this.autSvc.hasCredentials) {
+      return true;
+    }
+    this.navigationSvc.goToHome();
+    return false;
   }
 
 }
