@@ -8,6 +8,10 @@ export class SecurityTokenStore {
   private token:SecurityToken;
 
   constructor() {
+    this.token = {
+      token: localStorage.getItem('token'),
+      owner: null
+    };
   }
 
   public get storedValue():SecurityToken {
@@ -16,6 +20,7 @@ export class SecurityTokenStore {
 
   public set storedValue(value:SecurityToken) {
     this.token = value;
+    localStorage.setItem('token', this.token.token);
   }
 }
 
