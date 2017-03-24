@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Transaction} from '../models/transaction';
 import {AccountService} from '../services/account.service';
 import {BankAccount} from '../models/bankaccount';
+import {TransactionService} from '../services/transaction.service';
+import {TransactionInfo} from '../models/transaction-info';
 
 @Component({
   selector: 'app-home',
@@ -12,14 +14,16 @@ export class HomeComponent implements OnInit {
 
   private payStatus: Boolean;
   private newTransaction: Transaction;
+  private transactions: Transaction [];
   private account: BankAccount;
   private toAccount: BankAccount;
 
-  constructor(private accSvc: AccountService) { }
+  constructor(private accSvc: AccountService, private transSvc: TransactionService) { }
 
   ngOnInit() {
     this.payStatus = false;
     this.myAccount();
+    this.getTransactions(5);
     this.newTransaction = new Transaction();
   }
 
@@ -45,6 +49,14 @@ export class HomeComponent implements OnInit {
     this.accSvc.getAccount(id).subscribe(
       (data: BankAccount) => {
         this.toAccount = data;
+      }
+    );
+  }
+
+  private getTransactions(count: number): void {
+    this.transSvc.getTransactions(count).subscribe(
+      (data: TransactionInfo) => {
+        this.transactions = data.result;
       }
     );
   }

@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <thead class="thead-inverse">
     <tr>
-      <th>Date</th>
+      <th *ngIf="showDate">Date</th>
       <th>Source</th>
       <th>Target</th>
       <th>Amount [CHF]</th>
@@ -9,12 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Date</td>
-      <td>Source</td>
-      <td>Target</td>
-      <td>Amount [CHF]</td>
-      <td>Balance [CHF]</td>
+    <tr *ngFor="let transaction of transactions">
+      <td *ngIf="showDate">{{transaction.date}}</td>
+      <td>{{transaction.from}}</td>
+      <td>{{transaction.target}}</td>
+      <td>{{transaction.amount | currency:"CHF"}}</td>
+      <td>{{transaction.total | currency:"CHF"}}</td>
     </tr>
   </tbody>
 </table>

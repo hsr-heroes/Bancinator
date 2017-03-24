@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Transaction} from '../models/transaction';
 
 @Component({
   selector: 'wed-transactions-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transactions-list.component.css']
 })
 export class TransactionsListComponent implements OnInit {
+  @Input() transactions: Transaction [];
+  @Input() showDate: boolean;
 
   constructor() { }
 
