@@ -11,7 +11,7 @@
             <form>
               <div class="form-group">
                 <label for="from">From:</label>
-                <input id="from" type="text" name="from" class="form-control" disabled value="{{newTransaction?.from?.accountNr}} [... CHF]" />
+                <input id="from" type="text" name="from" class="form-control" disabled value="{{newTransaction?.from}} [{{newTransaction?.total}}]" />
               </div>
               <div class="form-group">
                 <label for="from">To:</label>
@@ -28,8 +28,8 @@
           </div>
           <div *ngIf="payStatus">
             <p>
-              Transaction to {{newTransaction?.target?.accountNr}} succeeded!<br />
-              New balance XXX CHF
+              Transaction to {{newTransaction?.target}} succeeded!<br />
+              New balance {{newTransaction?.total}} CHF
             </p>
             <a (click)="startOver($event)" class="btn btn-primary">Start Over</a>
           </div>

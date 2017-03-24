@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Transaction} from '../models/transaction';
 import {AccountService} from '../services/account.service';
-import {Account} from '../../auth/models/account';
+import {BankAccount} from '../models/bankaccount';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +12,8 @@ export class HomeComponent implements OnInit {
 
   private payStatus: Boolean;
   private newTransaction: Transaction;
-  private account: Account;
-  private toAccount: Account;
+  private account: BankAccount;
+  private toAccount: BankAccount;
 
   constructor(private accSvc: AccountService) { }
 
@@ -34,16 +34,16 @@ export class HomeComponent implements OnInit {
 
   private myAccount(): void {
     this.accSvc.getAccount().subscribe(
-      (data: Account) => {
+      (data: BankAccount) => {
         this.account = data;
-        this.newTransaction.from = this.account;
+        this.newTransaction.from = this.account.accountNr;
       }
     );
   }
 
   private getAccount(id: number): void {
     this.accSvc.getAccount(id).subscribe(
-      (data: Account) => {
+      (data: BankAccount) => {
         this.toAccount = data;
       }
     );

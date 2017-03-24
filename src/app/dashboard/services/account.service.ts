@@ -3,6 +3,7 @@ import {Account} from '../../auth/models/account';
 import {Observable} from 'rxjs';
 import {Headers, Http, Response} from '@angular/http';
 import {ResourceBase} from '../../auth/resources/resource-base';
+import {BankAccount} from '../models/bankaccount';
 
 @Injectable()
 export class AccountService extends ResourceBase {
@@ -11,18 +12,18 @@ export class AccountService extends ResourceBase {
     super(http);
   }
 
-  public getAccount(id: number = null): Observable<Account> {
+  public getAccount(id: number = null): Observable<BankAccount> {
     const url = '/accounts' + (id ? '/${id}' : '');
     return this.get(url)
       .map((response: Response) => {
         const result = response.json();
         if (result) {
-          return Account.fromDto(result);
+          return BankAccount.fromDto(result);
         }
         return null;
       })
       .catch((error: any) => {
-        return Observable.of<Account>(null);
+        return Observable.of<BankAccount>(null);
       });
   }
 
