@@ -13,7 +13,10 @@
       <td *ngIf="showDate">{{transaction.date | date:'d.M.y'}}</td>
       <td>{{transaction.from}}</td>
       <td>{{transaction.target}}</td>
-      <td class="currency">{{transaction.amount | number:"1.2-2"}}</td>
+      <td class="currency"
+          [class.alert-success]="transaction.amount > 0"
+          [class.alert-danger]="transaction.amount < 0">
+        {{transaction.amount | number:"1.2-2"}}</td>
       <td class="currency">{{transaction.total | number:"1.2-2"}}</td>
     </tr>
   </tbody>
