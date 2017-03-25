@@ -9,18 +9,18 @@
       <form >
         <div class="form-group col-sm-4">
           <label for="year">Select a year</label>
-          <select id="year" name="year" class="selectpicker form-control">
-            <option>2018</option>
+          <select id="year" name="year" class="selectpicker form-control" [(ngModel)]="selectedYear" (change)="getTransactions()">
+            <option *ngFor="let year of years" [value]="year">{{year}}</option>
           </select>
         </div>
         <div class="form-group col-sm-8">
           <label for="month">Select a month</label>
-          <select id="month" name="month" class="selectpicker form-control">
-            <option>Januar</option>
+          <select id="month" name="month" class="selectpicker form-control" [(ngModel)]="selectedMonth" (change)="getTransactions()">
+            <option *ngFor="let month of months; let i = index" [value]="i">{{month | date:"MMMM"}}</option>
           </select>
         </div>
       </form>
-      <wed-transactions-list></wed-transactions-list>
+      <wed-transactions-list [transactions]="transactions" [showDate]="true"></wed-transactions-list>
     </div>
   </div>
 </div>
