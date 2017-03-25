@@ -2,28 +2,33 @@
 <form (ngSubmit)="doRegister(registerForm)" #registerForm="ngForm">
   <div class="form-group">
     <label for="firstname">First name:</label>
-    <input id="firstname" pattern=".{2,}" placeholder="First name" type="text" name="firstname" class="form-control" [(ngModel)]="firstname"/>
-    <div>Please specify your first name.</div>
+    <input id="firstname" placeholder="First name" type="text" name="firstname" class="form-control"
+           required pattern=".{2,}" [(ngModel)]="firstname" #fn="ngModel"/>
+    <div [hidden]="fn.valid">Please specify your first name.</div>
   </div>
   <div class="form-group">
     <label for="lastname">Last name:</label>
-    <input id="lastname" pattern=".{2,}" placeholder="Last name" type="text" name="lastname" class="form-control" [(ngModel)]="lastname"/>
-    <div>Please specify your last name.</div>
+    <input id="lastname" placeholder="Last name" type="text" name="lastname" class="form-control"
+           required pattern=".{2,}" [(ngModel)]="lastname" #ln="ngModel"/>
+    <div [hidden]="ln.valid">Please specify your last name.</div>
   </div>
   <div class="form-group">
     <label for="username">User name:</label>
-    <input id="username" pattern=".{3,}" placeholder="User" type="text" name="login" class="form-control" [(ngModel)]="username"/>
-    <div>Please specify your login, at least three characters.</div>
+    <input id="username" placeholder="User" type="text" name="login" class="form-control"
+           required pattern=".{3,}" [(ngModel)]="username" #un="ngModel"/>
+    <div [hidden]="un.valid">Please specify your login, at least three characters.</div>
   </div>
   <div class="form-group">
     <label for="password">Password:</label>
-    <input id="password" pattern=".{3,}" placeholder="Password" type="password" name="password" class="form-control" [(ngModel)]="password"/>
-    <div>Please specify your password, at least three characters.</div>
+    <input id="password" placeholder="Password" type="password" name="password" class="form-control"
+           required pattern=".{3,}" [(ngModel)]="password" #pw="ngModel"/>
+    <div [hidden]="pw.valid">Please specify your password, at least three characters.</div>
   </div>
   <div class="form-group">
     <label for="passwordConfirm">Confirm Password:</label>
-    <input id="passwordConfirm" pattern=".{3,}" placeholder="Password" type="password" name="passwordConfirm" class="form-control"/>
-    <div>Please confirm your password.</div>
+    <input id="passwordConfirm" placeholder="Password" type="password" name="passwordConfirm" class="form-control"
+           required pattern="{{password}}" [(ngModel)]="passwordConfirm" #pw2="ngModel"/>
+    <div [hidden]="pw.valid && pw2.valid">Please confirm your password.</div>
   </div>
-  <button type="submit" class="btn btn-primary">Register</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!registerForm.form.valid">Register</button>
 </form>
