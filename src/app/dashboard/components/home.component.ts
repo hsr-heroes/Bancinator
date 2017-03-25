@@ -4,6 +4,7 @@ import {AccountService} from '../services/account.service';
 import {BankAccount} from '../models/bankaccount';
 import {TransactionService} from '../services/transaction.service';
 import {TransactionInfo} from '../models/transaction-info';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-home',
@@ -12,35 +13,33 @@ import {TransactionInfo} from '../models/transaction-info';
 })
 export class HomeComponent implements OnInit {
 
-  private payStatus: Boolean;
+  private submitted: Boolean;
   private newTransaction: Transaction;
   private transactions: Transaction [];
   private account: BankAccount;
+  private target: string;
+  private amount: number;
   private toAccount: BankAccount;
 
   constructor(private accSvc: AccountService, private transSvc: TransactionService) { }
 
   ngOnInit() {
-    this.payStatus = false;
+    this.submitted = false;
     this.myAccount();
     this.getTransactions();
-    this.newTransaction = new Transaction();
-  }
-
-  private pay(event: UIEvent): void {
-    this.payStatus = true;
   }
 
   private startOver(event: UIEvent): void {
-    this.payStatus = false;
-    this.newTransaction = new Transaction();
+    this.target = null;
+    this.amount = null;
+    this.newTransaction = null;
+    this.submitted = false;
   }
 
   private myAccount(): void {
     this.accSvc.getAccount().subscribe(
       (data: BankAccount) => {
         this.account = data;
-        this.newTransaction.from = this.account.accountNr;
       }
     );
   }
@@ -51,6 +50,19 @@ export class HomeComponent implements OnInit {
         this.toAccount = data;
       }
     );
+  }
+
+  private addTransaction(f: NgForm): boolean {
+    if (f.valid) {
+      this.transSvc.addTransaction(f.value.to, f.value.amount).subscribe(
+        (data: Transaction) => {
+          this.newTransaction = data;
+          this.submitted = true;
+          this.getTransactions();
+        }
+      );
+    }
+    return false;
   }
 
   private getTransactions(): void {

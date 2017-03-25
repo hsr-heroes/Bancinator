@@ -7,29 +7,35 @@
           <h3 class="panel-title">New Payment</h3>
         </div>
         <div class="panel-body">
-          <div *ngIf="!payStatus">
-            <form>
+          <div *ngIf="!submitted">
+            <form (ngSubmit)="addTransaction(payForm); payForm.reset()" #payForm="ngForm">
               <div class="form-group">
                 <label for="from">From:</label>
-                <input id="from" type="text" name="from" class="form-control" disabled value="{{newTransaction?.from}} [{{account?.amount | currency:'CHF':true}}]" />
+                <input id="from" type="text" name="from" class="form-control" disabled
+                       value="{{account?.accountNr}} [{{account?.amount | currency:'CHF':true}}]" />
               </div>
               <div class="form-group">
                 <label for="from">To:</label>
-                <input id="to" required pattern=".{2,}" placeholder="Target Account Number" type="text" name="to" class="form-control"/>
-                <div>Please specify the target account number.</div>
+                <input id="to" placeholder="Target Account Number" type="text" name="to" class="form-control"
+                       required pattern=".{2,}" [(ngModel)]="target" #to="ngModel"/>
+                <div [hidden]="to.valid">Please specify the target account number.</div>
+                <div [hidden]="true">Unknown account number specified.</div>
+                <div [hidden]="true">{{toAccount?.owner?.firstname}} {{toAccount?.owner?.lastname}}</div>
+
               </div>
               <div class="form-group">
                 <label for="from">Amount [CHF]:</label>
-                <input id="amount" [(ngModel)]="newTransaction.amount" required min="0" step="1" placeholder="Amount in CHF" type="number" name="amount" class="form-control" #amount="ngModel"/>
-                <div [hidden]="amount.valid">Please specify the amount.</div>
+                <input id="amount" placeholder="Amount in CHF" type="number" name="amount" class="form-control"
+                       required min="0.05" step="0.05" [(ngModel)]="amount" #am="ngModel"/>
+                <div [hidden]="am.valid">Please specify the amount.</div>
               </div>
-              <button (click)="pay($event)" type="submit" class="btn btn-primary">Pay</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!payForm.form.valid">Pay</button>
             </form>
           </div>
-          <div *ngIf="payStatus">
+          <div *ngIf="submitted">
             <p>
               Transaction to {{newTransaction?.target}} succeeded!<br />
-              New balance {{newTransaction?.total}} CHF
+              New balance {{newTransaction?.total | currency:'CHF':true}}
             </p>
             <a (click)="startOver($event)" class="btn btn-primary">Start Over</a>
           </div>

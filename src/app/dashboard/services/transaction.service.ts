@@ -3,6 +3,7 @@ import {ResourceBase} from '../../auth/resources/resource-base';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs';
 import {TransactionInfo} from '../models/transaction-info';
+import {Transaction} from '../models/transaction';
 
 @Injectable()
 export class TransactionService extends ResourceBase{
@@ -32,6 +33,20 @@ export class TransactionService extends ResourceBase{
       })
       .catch((error: any) => {
         return Observable.of<TransactionInfo>(null);
+      });
+  }
+
+  public addTransaction(target: string, amount: number): Observable<Transaction> {
+    return this.post('/accounts/transactions', { target: target, amount: amount })
+      .map((response: Response) => {
+        const result = response.json();
+        if (result) {
+          return Transaction.fromDto(result);
+        }
+        return null;
+      })
+      .catch((error: any) => {
+        return Observable.of<Transaction>(null);
       });
   }
 
