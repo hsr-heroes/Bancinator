@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.payStatus = false;
     this.myAccount();
-    this.getTransactions(5);
+    this.getTransactions();
     this.newTransaction = new Transaction();
   }
 
@@ -53,8 +53,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  private getTransactions(count: number): void {
-    this.transSvc.getTransactions(count).subscribe(
+  private getTransactions(): void {
+    this.transSvc.getTransactions(3).subscribe(
       (data: TransactionInfo) => {
         this.transactions = data.result;
       }

@@ -1,0 +1,7 @@
+table {
+  table-layout: fixed;
+}
+.currency {
+  text-align: right;
+  padding-right: 10%;
+}

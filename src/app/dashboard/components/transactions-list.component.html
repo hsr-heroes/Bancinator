@@ -4,17 +4,17 @@
       <th *ngIf="showDate">Date</th>
       <th>Source</th>
       <th>Target</th>
-      <th>Amount [CHF]</th>
-      <th>Balance [CHF]</th>
+      <th class="currency">Amount [CHF]</th>
+      <th class="currency">Balance [CHF]</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let transaction of transactions">
-      <td *ngIf="showDate">{{transaction.date}}</td>
+      <td *ngIf="showDate">{{transaction.date | date:'d.M.y'}}</td>
       <td>{{transaction.from}}</td>
       <td>{{transaction.target}}</td>
-      <td>{{transaction.amount | currency:"CHF"}}</td>
-      <td>{{transaction.total | currency:"CHF"}}</td>
+      <td class="currency">{{transaction.amount | number:"1.2-2"}}</td>
+      <td class="currency">{{transaction.total | number:"1.2-2"}}</td>
     </tr>
   </tbody>
 </table>
