@@ -11,8 +11,17 @@ export class TransactionService extends ResourceBase{
     super(http);
   }
 
-  public getTransactions(count: number): Observable<TransactionInfo> {
-    const url = `/accounts/transactions?count=${count}`;
+  public getTransactions(count?: number, year?: number, month?: number): Observable<TransactionInfo> {
+    let url = '/accounts/transactions';
+    if (count) {
+      url += `?count=${count}`;
+    } else if (year && month) {
+      const fromDate = new Date(year, month++, 1, 0, 0, 0, 0).toISOString();
+      const toDate = new Date(year, month, 1, 0, 0, 0, 0).toISOString();
+      url += `?fromDate=${fromDate}&toDate=${toDate}`;
+    } else {
+      return Observable.of<TransactionInfo>(null);
+    }
     return this.get(url)
       .map((response: Response) => {
         const result = response.json();
