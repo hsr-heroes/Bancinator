@@ -27,16 +27,17 @@ export class AuthResourceService extends ResourceBase {
   }
 
   public login(model:LoginInfo):Observable<Credential> {
+    
     return this.post('/auth/login', model.toDto())
       .map((response: Response) => {
         let result = response.json();
-        if (result) {
+        if (result) {    
           return Credential.fromDto(result);
         }
         return null;
       })
       .catch((error:any) => {
-        return Observable.of<Credential>(null);
+         return Observable.of<Credential>(null);
       });
   }
 }

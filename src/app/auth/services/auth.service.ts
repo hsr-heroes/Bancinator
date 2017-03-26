@@ -40,7 +40,7 @@ export class AuthService {
         this.tokenStore.storedValue = data;
         this.authUser = !isBlank(data)? data.owner : null;
         this.authenticatedUserChange.emit(this.authenticatedUser);
-      } );
+      });
   }
 
   public logout():void {

@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
 
   public isProcessing:boolean = false;
 
+  public errorMessage:string;
+
   constructor(private autSvc:AuthService, private navigationSvc: NavigationService, route: ActivatedRoute) {
     route.params.subscribe((p:Params) => this.backUrl = p["backUrl"]);
   }
@@ -36,6 +38,8 @@ export class LoginComponent implements OnInit {
           } else {
             this.navigationSvc.goToDashboard();
           }
+        }else{
+          this.errorMessage = 'username or password is incorrect.'
         }
       });
   }

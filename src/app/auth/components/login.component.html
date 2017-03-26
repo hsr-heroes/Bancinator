@@ -11,6 +11,7 @@
     <input id="password" placeholder="Password" type="password" name="password" class="form-control"
            required pattern=".{3,}" [(ngModel)]="password" #pw="ngModel"/>
     <div [hidden]="pw.valid">Please specify your login, at least three characters.</div>
+    <div><p style="color:red;">{{errorMessage}}</p></div>
   </div>
   <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
 </form>
