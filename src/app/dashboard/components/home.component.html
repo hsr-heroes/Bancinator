@@ -17,19 +17,26 @@
               <div class="form-group">
                 <label for="from">To:</label>
                 <input id="to" placeholder="Target Account Number" type="text" name="to" class="form-control"
-                       required pattern=".{2,}" [(ngModel)]="target" #to="ngModel"/>
+                       required pattern=".{2,}" [(ngModel)]="target" #to="ngModel" (keyup)="getAccount()"/>
                 <div [hidden]="to.valid">Please specify the target account number.</div>
-                <div [hidden]="true">Unknown account number specified.</div>
-                <div [hidden]="true">{{toAccount?.owner?.firstname}} {{toAccount?.owner?.lastname}}</div>
+                <div [hidden]="!to.valid || (toAccount && toAccount.accountNr)">
+                  Unknown account number specified.
+                </div>
+                <div [hidden]="!(toAccount && toAccount.accountNr)">
+                  {{toAccount?.owner?.firstname}} {{toAccount?.owner?.lastname}}
+                </div>
 
               </div>
               <div class="form-group">
                 <label for="from">Amount [CHF]:</label>
                 <input id="amount" placeholder="Amount in CHF" type="number" name="amount" class="form-control"
                        required min="0.05" step="0.05" [(ngModel)]="amount" #am="ngModel"/>
-                <div [hidden]="am.valid">Please specify the amount.</div>
+                <div [hidden]="am.valid && amount >= 0.05">Please specify the amount.</div>
               </div>
-              <button type="submit" class="btn btn-primary" [disabled]="!payForm.form.valid">Pay</button>
+              <button type="submit" class="btn btn-primary"
+                      [disabled]="!(payForm.valid && toAccount && toAccount.accountNr === target) || !(amount >= 0.05)">
+                Pay
+              </button>
             </form>
           </div>
           <div *ngIf="submitted">
@@ -37,7 +44,7 @@
               Transaction to {{newTransaction?.target}} succeeded!<br />
               New balance {{newTransaction?.total | currency:'CHF':true}}
             </p>
-            <a (click)="startOver($event)" class="btn btn-primary">Start Over</a>
+            <a (click)="startOver()" class="btn btn-primary">Start Over</a>
           </div>
         </div>
       </div>

@@ -29,11 +29,12 @@ export class HomeComponent implements OnInit {
     this.getTransactions();
   }
 
-  private startOver(event: UIEvent): void {
+  private startOver(): void {
     this.target = null;
     this.amount = null;
-    this.newTransaction = null;
+    this.toAccount = null;
     this.submitted = false;
+    this.newTransaction = null;
   }
 
   private myAccount(): void {
@@ -44,16 +45,20 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  private getAccount(id: number): void {
-    this.accSvc.getAccount(id).subscribe(
-      (data: BankAccount) => {
-        this.toAccount = data;
-      }
-    );
+  private getAccount(): void {
+    if (this.target && this.target !== '' && this.target !== this.account.accountNr) {
+      this.accSvc.getAccount(this.target).subscribe(
+        (data: BankAccount) => {
+          this.toAccount = data;
+        }
+      );
+    } else {
+      this.toAccount = null;
+    }
   }
 
   private addTransaction(f: NgForm): boolean {
-    if (f.valid) {
+    if (f.valid && this.toAccount && this.toAccount.accountNr === this.target && this.target !== this.account.accountNr) {
       this.transSvc.addTransaction(f.value.to, f.value.amount).subscribe(
         (data: Transaction) => {
           this.newTransaction = data;

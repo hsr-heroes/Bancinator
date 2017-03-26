@@ -12,8 +12,8 @@ export class AccountService extends ResourceBase {
     super(http);
   }
 
-  public getAccount(id: number = null): Observable<BankAccount> {
-    const url = '/accounts' + (id ? '/${id}' : '');
+  public getAccount(id: string = null): Observable<BankAccount> {
+    const url = '/accounts' + (id && id !== "" ? `/${id}` : '');
     return this.get(url)
       .map((response: Response) => {
         const result = response.json();
