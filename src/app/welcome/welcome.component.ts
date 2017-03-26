@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../auth/services/auth.service';
+import {NavigationService} from '../core/services/navigation.service';
 
 @Component({
   selector: 'wed-welcome',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private autSvc: AuthService, private navigationSvc: NavigationService) {
+    if (this.autSvc.hasCredentials) {
+      this.navigationSvc.goToDashboard();
+    }
   }
+
+  ngOnInit() { }
 
 }
