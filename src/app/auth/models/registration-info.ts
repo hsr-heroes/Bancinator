@@ -1,6 +1,6 @@
-import {LoginInfo} from "./login-info";
+import {LoginInfo} from './login-info';
 
-export class RegistrationInfo extends LoginInfo{
+export class RegistrationInfo extends LoginInfo {
   constructor(login: string,
               password: string,
               public firstname: string,
@@ -13,7 +13,7 @@ export class RegistrationInfo extends LoginInfo{
   }
 
   toDto(): any {
-    let dto = super.toDto();
+    const dto = super.toDto();
     dto.firstname = this.firstname;
     dto.lastname = this.lastname;
     return dto;

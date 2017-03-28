@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {ResourceBase} from '../../auth/resources/resource-base';
 import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {TransactionInfo} from '../models/transaction-info';
 import {Transaction} from '../models/transaction';
 
 @Injectable()
-export class TransactionService extends ResourceBase{
+export class TransactionService extends ResourceBase {
 
   constructor(http: Http) {
     super(http);

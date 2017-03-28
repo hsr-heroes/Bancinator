@@ -4,7 +4,7 @@ import {AccountService} from '../services/account.service';
 import {BankAccount} from '../models/bankaccount';
 import {TransactionService} from '../services/transaction.service';
 import {TransactionInfo} from '../models/transaction-info';
-import {NgForm} from "@angular/forms";
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-home',

@@ -22,12 +22,11 @@
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      145
     ],
     "member-access": false,
     "member-ordering": [
       true,
-      "static-before-instance",
       "variables-before-functions"
     ],
     "no-arg": true,
@@ -98,8 +97,8 @@
       "check-type"
     ],
 
-    "directive-selector": [true, "attribute", "app", "camelCase"],
-    "component-selector": [true, "element", "app", "kebab-case"],
+    "directive-selector": [true, "attribute", ["app", "wed"], "camelCase"],
+    "component-selector": [true, "element", ["app", "wed"], "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -110,7 +109,7 @@
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "no-access-missing-member": true,
-    "templates-use-public": true,
+    "templates-use-public": false,
     "invoke-injectable": true
   }
 }

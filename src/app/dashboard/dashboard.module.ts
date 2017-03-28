@@ -1,10 +1,10 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from '../shared/shared.module';
 
-import {DashboardRoutingModule} from "./dashboard-routing.module";
+import {DashboardRoutingModule} from './dashboard-routing.module';
 import {DashboardComponent} from './dashboard.component';
-import {HomeComponent, TransactionsComponent} from "./components";
+import {HomeComponent, TransactionsComponent} from './components';
 import { TransactionsListComponent } from './components/transactions-list.component';
 import {LogoutComponent} from '../auth/components/logout.component';
 import {TransactionService} from './services/transaction.service';
@@ -30,7 +30,7 @@ import {AccountService} from './services/account.service';
   ]
 })
 export class DashboardModule {
-  static forRoot(config?:{}) : ModuleWithProviders {
+  static forRoot(config?: {}): ModuleWithProviders {
     return {
       ngModule: DashboardModule,
       providers: [ ]
