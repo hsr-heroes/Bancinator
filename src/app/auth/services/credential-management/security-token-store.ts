@@ -1,8 +1,5 @@
 import {Injectable} from '@angular/core';
 
-/**
- * TODO: Add localStorage logic here...
- */
 @Injectable()
 export class SecurityTokenStore {
   private token: SecurityToken;

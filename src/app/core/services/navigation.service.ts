@@ -9,11 +9,11 @@ export class NavigationService {
   }
 
   public goToHome(): void {
-    this.goToUrl('/welcome'); // TODO: adjust routing according this URL
+    this.goToUrl('/welcome');
   }
 
   public goToDashboard(): void {
-    this.goToUrl('/dashboard'); // TODO: adjust routing according this URL
+    this.goToUrl('/dashboard');
   }
 
   constructor(private router: Router) {

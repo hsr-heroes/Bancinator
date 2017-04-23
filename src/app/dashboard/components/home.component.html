@@ -17,7 +17,7 @@
               <div class="form-group">
                 <label for="from">To:</label>
                 <input id="to" placeholder="Target Account Number" type="text" name="to" class="form-control"
-                       required pattern=".{2,}" [(ngModel)]="target" #to="ngModel" (keyup)="getAccount()"/>
+                       required pattern=".{3,}" [(ngModel)]="target" #to="ngModel" (keyup)="getAccount()"/>
                 <div [hidden]="to.valid">Please specify the target account number.</div>
                 <div [hidden]="!to.valid || (toAccount && toAccount.accountNr)">
                   Unknown account number specified.
