@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Response, Http} from '@angular/http';
 
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 import {LoginInfo, Account, RegistrationInfo, Credential} from '../models';
 import {ResourceBase} from './resource-base';
